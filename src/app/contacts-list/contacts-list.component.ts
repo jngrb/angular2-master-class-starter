@@ -1,4 +1,4 @@
-import { Component /*, OnInit */ } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Contact } from '../models/contact';
 // import { CONTACT_DATA } from '../data/contact-data';
 import { ContactsService } from '../contacts.service';
@@ -43,12 +43,12 @@ export class ContactsListComponent /*implements OnInit*/ {
   }*/
   
   constructor(private contactsService: ContactsService) {
-    contactsService.getContacts()
-      .subscribe(contacts => this.contacts = contacts);
   }
 
-  /*ngOnInit() {
-    this.contacts = this.contactsService.getContacts();
-  }*/
+  ngOnInit() {
+    //this.contacts = this.contactsService.getContacts();
+    this.contactsService.getContacts()
+      .subscribe(contacts => this.contacts = contacts);
+  }
 
 }

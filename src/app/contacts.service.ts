@@ -48,13 +48,11 @@ export class ContactsService {
   
   getContacts() {
     return this.http.get(this.API_ENDPOINT + '/api/contacts')
-      .map(res => res.json())
-      .map(data => data.items);
+      .map(res => res.json().items);
   }
 
   getContact(id: number | string) {
     return this.http.get(this.API_ENDPOINT + `/api/contacts/${id}`)
-      .map(res => res.json())
-      .map(data => data.item);
+      .map(res => res.json().item);
   }
 }
