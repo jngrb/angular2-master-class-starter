@@ -15,7 +15,8 @@ Hello {{name}}
     <span class="title">{{contact.name}}</span>
   </li>
   <li class="collection-item avatar">
-    <img [src]="contact2.image" alt="" class="circle">
-    <span class="title">{{contact2.name}}</span>
+    <img src="{{contact2.image}}" alt="" class="circle">
+    <span class="title">{{contact2.name}}</span><br />
+    <span class="address">{{contact2.address.street}}, {{contact2.address.zip}} {{contact2.address.city}}, {{contact2.address.country}}</span>
   </li>
 </ul>
