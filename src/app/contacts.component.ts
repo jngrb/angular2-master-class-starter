@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { OnInit, Component } from '@angular/core';
 import { Contact } from './models/contact';
-import { CONTACT_DATA } from './data/contact-data';
+// import { CONTACT_DATA } from './data/contact-data';
+import { ContactsService } from './contacts.service';
 
 // templateUrl: 'contacts.component.html',
 @Component({
@@ -8,11 +9,11 @@ import { CONTACT_DATA } from './data/contact-data';
   templateUrl: 'contacts.component.html',
   styleUrls: ['contacts.component.css']
 })
-export class ContactsAppComponent {
-  title = 'Angular 2 Master Class setup works!';
-  name = 'Angular 2';
-  contacts: Contact[] = CONTACT_DATA;
-  contact: Contact = {
+export class ContactsAppComponent implements OnInit {
+  // title = 'Angular 2 Master Class setup works!';
+  // name = 'Angular 2';
+  contacts: Contact[]; // = CONTACT_DATA;
+  /* contact: Contact = {
     id: 0,
     name: 'Diana Ellis',
     email: '',
@@ -41,5 +42,11 @@ export class ContactsAppComponent {
       city: 'Springfield',
       country: 'United States'
     }
+  }*/
+  
+  constructor(private contactsService: ContactsService) {}
+  
+  ngOnInit() {
+    this.contacts = this.contactsService.getContacts();
   }
 }

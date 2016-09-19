@@ -2,7 +2,7 @@
   {{title}}
 </h1> -->
 <trm-contacts-header></trm-contacts-header>
-Hello {{name}}
+<!-- Hello {{name}} -->
 <!-- <div>
  <img [src]="contact.image" width="25%">
  <span>
@@ -10,7 +10,7 @@ Hello {{name}}
  </span>
 </div> -->
 <ul class="collection">
-  <li class="collection-item avatar">
+  <!-- <li class="collection-item avatar">
     <img [src]="contact.image" alt="" class="circle">
     <span class="title">{{contact.name}}</span>
   </li>
@@ -18,7 +18,7 @@ Hello {{name}}
     <img src="{{contact2.image}}" alt="" class="circle">
     <span class="title">{{contact2.name}}</span><br />
     <span class="address">{{contact2.address.street}}, {{contact2.address.zip}} {{contact2.address.city}}, {{contact2.address.country}}</span>
-  </li>
+  </li> -->
   <li class="collection-item avatar" *ngFor="let contact of contacts">
     <img [src]="contact.image" alt="Foto von {{contact.name}}" [title]="contact.name" class="circle">
     <span class="id">*{{contact.id}}:</span> <span class="title">{{contact.name}}</span>
