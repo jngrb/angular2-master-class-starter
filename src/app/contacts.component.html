@@ -9,20 +9,5 @@
    {{contact.name}}
  </span>
 </div> -->
-<ul class="collection">
-  <!-- <li class="collection-item avatar">
-    <img [src]="contact.image" alt="" class="circle">
-    <span class="title">{{contact.name}}</span>
-  </li>
-  <li class="collection-item avatar">
-    <img src="{{contact2.image}}" alt="" class="circle">
-    <span class="title">{{contact2.name}}</span><br />
-    <span class="address">{{contact2.address.street}}, {{contact2.address.zip}} {{contact2.address.city}}, {{contact2.address.country}}</span>
-  </li> -->
-  <li class="collection-item avatar" *ngFor="let contact of contacts">
-    <img [src]="contact.image" alt="Foto von {{contact.name}}" [title]="contact.name" class="circle">
-    <span class="id">*{{contact.id}}:</span> <span class="title">{{contact.name}}</span>
-    <div *ngIf="contact.email != ''" class="phone">[[email: <i>{{contact.email}}</i>]]</div>
-    <div *ngIf="contact.phone != ''" class="phone">((phone: {{contact.phone}}))</div>
-  </li>
-</ul>
+<router-outlet>
+</router-outlet>
