@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Contact } from './models/contact';
+import { CONTACT_DATA } from './data/contact-data';
 
 // templateUrl: 'contacts.component.html',
 @Component({
@@ -10,6 +11,7 @@ import { Contact } from './models/contact';
 export class ContactsAppComponent {
   title = 'Angular 2 Master Class setup works!';
   name = 'Angular 2';
+  contacts: Contact[] = CONTACT_DATA;
   contact: Contact = {
     id: 0,
     name: 'Diana Ellis',
