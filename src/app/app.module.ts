@@ -4,10 +4,12 @@ import { ContactsAppComponent } from './contacts.component';
 import { ContactsHeaderComponent } from './contacts-header';
 
 @NgModule({
-  declarations: [ContactsAppComponent, ContactsHeaderComponent],
+  declarations: [
+    ContactsAppComponent,
+    ContactsHeaderComponent
+  ],
   imports: [BrowserModule],
   bootstrap: [ContactsAppComponent]
 })
 export class ContactsModule {
-
 }

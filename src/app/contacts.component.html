@@ -1,3 +1,21 @@
-<h1>
+<!-- <h1>
   {{title}}
-</h1>
+</h1> -->
+<trm-contacts-header></trm-contacts-header>
+Hello {{name}}
+<!-- <div>
+ <img [src]="contact.image" width="25%">
+ <span>
+   {{contact.name}}
+ </span>
+</div> -->
+<ul class="collection">
+  <li class="collection-item avatar">
+    <img [src]="contact.image" alt="" class="circle">
+    <span class="title">{{contact.name}}</span>
+  </li>
+  <li class="collection-item avatar">
+    <img [src]="contact2.image" alt="" class="circle">
+    <span class="title">{{contact2.name}}</span>
+  </li>
+</ul>
