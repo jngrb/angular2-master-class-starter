@@ -15,11 +15,11 @@ export class ContactsService {
 
   constructor() {
     this.contactData = new Array<Contact>();
-    for (var contact of CONTACT_DATA) {
+    for (let contact of CONTACT_DATA) {
       // clone the object
-      var clone = Object.assign({}, contact);
+      let clone = Object.assign({}, contact);
       // and add a random middle initial
-      var temp = clone.name.split(' ');
+      let temp = clone.name.split(' ');
       clone.name = temp.join(' ' + this.getRandomMiddleInitial() + '. ');
       if (clone.email == '') {
         clone.email = 'no@thing.found';
@@ -35,7 +35,7 @@ export class ContactsService {
     return this.contactData;
   }
 
-  getContact(id): Contact {
+  getContact(id: number): Contact {
     return this.contactData[id];
   }
 }
