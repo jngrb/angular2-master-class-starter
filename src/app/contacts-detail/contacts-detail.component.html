@@ -13,19 +13,23 @@
       <div class="card-content grey-text text-darken-4">
         <div class="row">
           <span class="col s6"><i class="material-icons prefix">email</i> Email:</span>
-          <span class="col s6">{{contact.email}}</span>
+          <span *ngIf="contact.email != ''" class="col s6"><a [href]="'mailto:' + contact.email">{{contact.email}}</a></span>
+          <span *ngIf="contact.email == ''" class="col s6"><i>No e-mail address provided.</i></span>
         </div>
         <div class="row">
           <span class="col s6"><i class="material-icons prefix">phone</i> Phone:</span>
-          <span class="col s6">{{contact.phone}}</span>
+          <span *ngIf="contact.phone != ''" class="col s6">{{contact.phone}}</span>
+          <span *ngIf="contact.phone == ''" class="col s6"><i>No phone number provided.</i></span>
         </div>
         <div class="row">
           <span class="col s6"><i class="material-icons prefix">cake</i> Birthday:</span>
-          <span class="col s6">{{contact.birthday}}</span>
+          <span *ngIf="contact.birthday != ''" class="col s6">{{contact.birthday}}</span>
+          <span *ngIf="contact.birthday == ''" class="col s6"><i>No date of birth provided.</i></span>
         </div>
         <div class="row">
           <span class="col s6"><i class="material-icons prefix">public</i> Website:</span>
-          <span class="col s6">{{contact.website}}</span>
+          <span *ngIf="contact.website != ''" class="col s6"><a [href]="'http://' + contact.website">{{contact.website}}</a></span>
+          <span *ngIf="contact.website == ''" class="col s6"><i>No web site provided.</i></span>
         </div>
         <fieldset>
           <legend><i class="material-icons prefix">location_city</i> Address</legend>
