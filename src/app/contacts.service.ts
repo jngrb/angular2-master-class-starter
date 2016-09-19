@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
-import { CONTACT_DATA } from './data/contact-data';
+import { Http } from '@angular/http';
+//import { CONTACT_DATA } from './data/contact-data';
 import { Contact } from './models/contact';
 
 @Injectable()
 export class ContactsService {
+  API_ENDPOINT = "http://localhost:4201";
 
   possibleMiddleInitial = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
@@ -13,7 +15,10 @@ export class ContactsService {
     return this.possibleMiddleInitial.charAt(Math.floor(Math.random() * this.possibleMiddleInitial.length));
   }
 
-  constructor() {
+  constructor(private http: Http) {
+  }
+ 
+  /*updateContacts() {
     this.contactData = new Array<Contact>();
     for (let contact of CONTACT_DATA) {
       // clone the object
@@ -32,10 +37,24 @@ export class ContactsService {
   }
  
   getContacts(): Array<Contact> {
+    this.updateContacts();
     return this.contactData;
   }
 
   getContact(id: number): Contact {
+    this.updateContacts();
     return this.contactData[id];
+  }*/
+  
+  getContacts() {
+    return this.http.get(this.API_ENDPOINT + '/api/contacts')
+      .map(res => res.json())
+      .map(data => data.items);
+  }
+
+  getContact(id: number | string) {
+    return this.http.get(this.API_ENDPOINT + `/api/contacts/${id}`)
+      .map(res => res.json())
+      .map(data => data.item);
   }
 }

@@ -7,47 +7,49 @@
   <div class="col s12 m7">
     <div class="card">
       <div class="card-image">
-        <img [src]="contact.image">
-        <span class="card-title">{{contact.name}}</span>
+        <img *ngIf="contact != null && contact.image != ''" [src]="contact.image">
+        <img *ngIf="contact == null || contact.image == ''" src="/assets/images/placeholder.png">
+        <span *ngIf="contact != null && contact.image != ''" class="card-title">{{contact.name}}</span>
+        <span *ngIf="contact == null || contact.image == ''" class="card-title"><font color="black"><i>No name provided!</i></font></span>
       </div>
       <div class="card-content grey-text text-darken-4">
         <div class="row">
           <span class="col s6"><i class="material-icons prefix">email</i> Email:</span>
-          <span *ngIf="contact.email != ''" class="col s6"><a [href]="'mailto:' + contact.email">{{contact.email}}</a></span>
-          <span *ngIf="contact.email == ''" class="col s6"><i>No e-mail address provided.</i></span>
+          <span *ngIf="contact != null && contact.email != ''" class="col s6"><a [href]="'mailto:' + contact.email">{{contact.email}}</a></span>
+          <span *ngIf="contact == null || contact.email == ''" class="col s6"><i>No e-mail address provided.</i></span>
         </div>
         <div class="row">
           <span class="col s6"><i class="material-icons prefix">phone</i> Phone:</span>
-          <span *ngIf="contact.phone != ''" class="col s6">{{contact.phone}}</span>
-          <span *ngIf="contact.phone == ''" class="col s6"><i>No phone number provided.</i></span>
+          <span *ngIf="contact != null && contact.phone != ''" class="col s6">{{contact.phone}}</span>
+          <span *ngIf="contact == null || contact.phone == ''" class="col s6"><i>No phone number provided.</i></span>
         </div>
         <div class="row">
           <span class="col s6"><i class="material-icons prefix">cake</i> Birthday:</span>
-          <span *ngIf="contact.birthday != ''" class="col s6">{{contact.birthday}}</span>
-          <span *ngIf="contact.birthday == ''" class="col s6"><i>No date of birth provided.</i></span>
+          <span *ngIf="contact != null && contact.birthday != ''" class="col s6">{{contact.birthday}}</span>
+          <span *ngIf="contact == null || contact.birthday == ''" class="col s6"><i>No date of birth provided.</i></span>
         </div>
         <div class="row">
           <span class="col s6"><i class="material-icons prefix">public</i> Website:</span>
-          <span *ngIf="contact.website != ''" class="col s6"><a [href]="'http://' + contact.website">{{contact.website}}</a></span>
-          <span *ngIf="contact.website == ''" class="col s6"><i>No web site provided.</i></span>
+          <span *ngIf="contact != null && contact.website != ''" class="col s6"><a [href]="'http://' + contact.website">{{contact.website}}</a></span>
+          <span *ngIf="contact == null || contact.website == ''" class="col s6"><i>No web site provided.</i></span>
         </div>
         <fieldset>
           <legend><i class="material-icons prefix">location_city</i> Address</legend>
           <div class="row">
             <span class="col s6">Street:</span>
-            <span class="col s6">{{contact.address.street}}</span>
+            <span class="col s6">{{contact?.address.street}}</span>
           </div>
           <div class="row">
             <span class="col s6">Zipcode:</span>
-            <span class="col s6">{{contact.address.zip}}</span>
+            <span class="col s6">{{contact?.address.zip}}</span>
           </div>
           <div class="row">
             <span class="col s6">City:</span>
-            <span class="col s6">{{contact.address.city}}</span>
+            <span class="col s6">{{contact?.address.city}}</span>
           </div>
           <div class="row">
             <span class="col s6">Country:</span>
-            <span class="col s6">{{contact.address.country}}</span>
+            <span class="col s6">{{contact?.address.country}}</span>
           </div>
         </fieldset>
       </div>
