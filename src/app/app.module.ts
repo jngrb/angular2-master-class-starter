@@ -12,6 +12,7 @@ import { ContactsDetailComponent } from './contacts-detail/contacts-detail.compo
 import { ContactsEditorComponent } from './contacts-editor/contacts-editor.component';
 import { provide } from '@angular/core';
 import { API_ENDPOINT_TOKEN } from './app.tokens';
+import { environment } from './environment'
 import 'rxjs/add/operator/map';
 
 @NgModule({
@@ -30,7 +31,7 @@ import 'rxjs/add/operator/map';
   ],
   bootstrap: [ContactsAppComponent],
   providers: [
-    provide(API_ENDPOINT_TOKEN, { useValue: 'http://localhost:4201/' }),
+    provide(API_ENDPOINT_TOKEN, { useValue: environment.apiUrl }),
     provide(ContactsService, { useClass: ContactsService })
   ]
 })
