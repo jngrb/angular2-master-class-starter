@@ -1,5 +1,5 @@
 <label for="search">Type to search for contacts:</label>
-<input name="search" (input)="search($event.target.value)" type="text" placeholder="<search string>" />
+<input name="search" (input)="terms$.next($event.target.value)" type="text" placeholder="<search string>" />
 <ul class="collection">
   <!-- <li class="collection-item avatar">
     <img [src]="contact.image" alt="" class="circle">
