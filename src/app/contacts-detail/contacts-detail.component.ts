@@ -22,5 +22,4 @@ export class ContactsDetailComponent /* implements OnInit */ {
     this.contactsService.getContact(id)
       .subscribe(contact => this.contact = contact);
   }
-
 }

@@ -55,6 +55,8 @@
         </fieldset>
       </div>
       <div class="card-action">
+        <a *ngIf="contact" class="btn" routerLink="edit">Edit</a>
+        <!-- <a class="btn" routerLink="/contact/{{contact?.id}}/edit">Edit2</a> -->
         <a class="btn" routerLink="">Go Back</a>
       </div>
     </div>
