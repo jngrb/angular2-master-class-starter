@@ -6,13 +6,10 @@ import { NgModule } from '@angular/core';
 import { ContactsAppComponent } from './contacts.component';
 import { ContactsAppRoutes } from './app.routes';
 import { ContactsHeaderComponent } from './contacts-header';
-import { ContactsService } from './contacts.service';
 import { ContactsListComponent } from './contacts-list/contacts-list.component';
 import { ContactsDetailComponent } from './contacts-detail/contacts-detail.component';
 import { ContactsEditorComponent } from './contacts-editor/contacts-editor.component';
-import { provide } from '@angular/core';
-import { API_ENDPOINT_TOKEN } from './app.tokens';
-import { environment } from './environment'
+import { apiUrlProvider, contactsServiceProvider } from './app.providers';
 import 'rxjs/add/operator/map';
 
 @NgModule({
@@ -31,8 +28,8 @@ import 'rxjs/add/operator/map';
   ],
   bootstrap: [ContactsAppComponent],
   providers: [
-    provide(API_ENDPOINT_TOKEN, { useValue: environment.apiUrl }),
-    provide(ContactsService, { useClass: ContactsService })
+    apiUrlProvider,
+    contactsServiceProvider
   ]
 })
 export class ContactsModule {
