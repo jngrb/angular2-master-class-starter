@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Contact } from '../models/contact';
 // import { CONTACT_DATA } from '../data/contact-data';
 import { ContactsService } from '../contacts.service';
+import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
+import 'rxjs/add/operator/debounceTime.js';
+import 'rxjs/add/operator/distinctUntilChanged.js';
 
 @Component({
   selector: 'trm-contacts-list',
@@ -10,7 +14,9 @@ import { ContactsService } from '../contacts.service';
 })
 export class ContactsListComponent /*implements OnInit*/ {
 
-  contacts: Contact[]; // = CONTACT_DATA;
+  private terms$ = new Subject<string>();
+
+  contacts: Observable<Array<Contact>>; // = CONTACT_DATA;
   /* contact: Contact = {
     id: 0,
     name: 'Diana Ellis',
@@ -47,8 +53,16 @@ export class ContactsListComponent /*implements OnInit*/ {
 
   ngOnInit() {
     //this.contacts = this.contactsService.getContacts();
-    this.contactsService.getContacts()
-      .subscribe(contacts => this.contacts = contacts);
+    /*this.contactsService.getContacts()
+      .subscribe(contacts => this.contacts = contacts);*/
+    this.contacts = this.contactsService.getContacts();
+
+    this.terms$.debounceTime(400)
+               .distinctUntilChanged()
+               .subscribe(term => this.search(term));
   }
 
+  search(text: string) {
+    this.contacts = this.contactsService.search(text);
+  }
 }

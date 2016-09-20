@@ -1,3 +1,5 @@
+<label for="search">Type to search for contacts:</label>
+<input name="search" (input)="search($event.target.value)" type="text" placeholder="<search string>" />
 <ul class="collection">
   <!-- <li class="collection-item avatar">
     <img [src]="contact.image" alt="" class="circle">
@@ -8,7 +10,7 @@
     <span class="title">{{contact2.name}}</span><br />
     <span class="address">{{contact2.address.street}}, {{contact2.address.zip}} {{contact2.address.city}}, {{contact2.address.country}}</span>
   </li> -->
-  <li class="collection-item avatar" *ngFor="let contact of contacts">
+  <li class="collection-item avatar" *ngFor="let contact of contacts | async">
    <a [routerLink]="['/contact', contact.id]">
     <img [src]="contact.image" alt="Foto von {{contact.name}}" [title]="contact.name" class="circle">
     <!-- <span class="id">*{{contact.id}}:</span> -->
@@ -18,4 +20,4 @@
    </a>
   </li>
 </ul>
-<div align="right" style="text-align; right;">{{contacts?.length}} contacts found.</div>
+<!-- <div align="right" style="text-align; right;">{{contacts?.length}} contacts found.</div> -->

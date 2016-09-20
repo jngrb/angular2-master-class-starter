@@ -51,6 +51,11 @@ export class ContactsService {
       .map(res => res.json().items);
   }
 
+  search(text: string) {
+    return this.http.get(`${this.API_ENDPOINT}api/search?text=${text}`)
+      .map(res => res.json().items);
+  }
+
   getContact(id: number | string) {
     return this.http.get(this.API_ENDPOINT + `api/contacts/${id}`)
       .map(res => res.json().item);
