@@ -55,8 +55,8 @@
         </fieldset>
       </div>
       <div class="card-action">
-        <a *ngIf="contact" class="btn" (click)="edit.next(contact)">Edit</a>
-        <a class="btn" (click)="back.next()">Go Back</a>
+        <a class="btn" (click)="back.emit()">Go Back</a>
+        <a *ngIf="contact" class="btn" (click)="edit.emit(contact)">Edit</a>
       </div>
     </div>
   </div>

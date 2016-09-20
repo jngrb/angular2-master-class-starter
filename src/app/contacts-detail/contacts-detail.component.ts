@@ -1,5 +1,5 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
-import { Subject } from 'rxjs/Subject';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+//import { Subject } from 'rxjs/Subject';
 import { Contact } from '../models/contact';
 
 @Component({
@@ -10,8 +10,8 @@ import { Contact } from '../models/contact';
 export class ContactsDetailComponent /* implements OnInit */ {
 
   @Input() contact: Contact;
-  @Output() edit = new Subject<Contact>();
-  @Output() back = new Subject();
+  @Output() edit = new EventEmitter<Contact>();
+  @Output() back = new EventEmitter();
 
   constructor() { }
 
