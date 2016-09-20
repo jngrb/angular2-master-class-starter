@@ -3,9 +3,11 @@ import { Http } from '@angular/http';
 //import { CONTACT_DATA } from './data/contact-data';
 import { Contact } from './models/contact';
 import { API_ENDPOINT_TOKEN } from './app.tokens'
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class ContactsService {
+
   possibleMiddleInitial = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
   contactData: Contact[];
@@ -51,7 +53,13 @@ export class ContactsService {
       .map(res => res.json().items);
   }
 
-  search(text: string) {
+  search(term: Observable<string>, debounceMs = 400) {
+    return term.debounceTime(debounceMs)
+      .distinctUntilChanged()
+      .switchMap(term => this.rawSearch(<string>term) );
+  }
+
+  rawSearch(text: string) {
     return this.http.get(`${this.API_ENDPOINT}api/search?text=${text}`)
       .map(res => res.json().items);
   }

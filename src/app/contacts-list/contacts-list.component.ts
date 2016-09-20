@@ -54,13 +54,7 @@ export class ContactsListComponent /*implements OnInit*/ {
     /*this.contactsService.getContacts()
       .subscribe(contacts => this.contacts = contacts);*/
     // this.contactsService.getContacts()
-    this.contacts = this.terms$.debounceTime(400)
-      .distinctUntilChanged() // Observable<String>
-      .switchMap(term => this.contactsService.search(term) /* Observable<Array<Contact>> */ )
+    this.contacts = this.contactsService.search(this.terms$)
       .merge(this.contactsService.getContacts()); // merge propagates the values by input order and time
-  }
-
-  search(text: string) : Observable<Array<Contact>> {
-    return ;
   }
 }
