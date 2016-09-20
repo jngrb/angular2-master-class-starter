@@ -10,6 +10,8 @@ import { ContactsService } from './contacts.service';
 import { ContactsListComponent } from './contacts-list/contacts-list.component';
 import { ContactsDetailComponent } from './contacts-detail/contacts-detail.component';
 import { ContactsEditorComponent } from './contacts-editor/contacts-editor.component';
+import { provide } from '@angular/core';
+import { API_ENDPOINT_TOKEN } from './app.tokens';
 import 'rxjs/add/operator/map';
 
 @NgModule({
@@ -27,7 +29,10 @@ import 'rxjs/add/operator/map';
     FormsModule
   ],
   bootstrap: [ContactsAppComponent],
-  providers: [ContactsService]
+  providers: [
+    provide(API_ENDPOINT_TOKEN, { useValue: 'http://localhost:4201/' }),
+    provide(ContactsService, { useClass: ContactsService })
+  ]
 })
 export class ContactsModule {
 }

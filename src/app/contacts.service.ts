@@ -1,12 +1,11 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { Http } from '@angular/http';
 //import { CONTACT_DATA } from './data/contact-data';
 import { Contact } from './models/contact';
+import { API_ENDPOINT_TOKEN } from './app.tokens'
 
 @Injectable()
 export class ContactsService {
-  API_ENDPOINT = "http://localhost:4201";
-
   possibleMiddleInitial = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
   contactData: Contact[];
@@ -15,7 +14,8 @@ export class ContactsService {
     return this.possibleMiddleInitial.charAt(Math.floor(Math.random() * this.possibleMiddleInitial.length));
   }
 
-  constructor(private http: Http) {
+  constructor(@Inject(API_ENDPOINT_TOKEN) private API_ENDPOINT: string,
+              private http: Http) {
   }
  
   /*updateContacts() {
@@ -47,17 +47,17 @@ export class ContactsService {
   }*/
   
   getContacts() {
-    return this.http.get(this.API_ENDPOINT + '/api/contacts')
+    return this.http.get(this.API_ENDPOINT + 'api/contacts')
       .map(res => res.json().items);
   }
 
   getContact(id: number | string) {
-    return this.http.get(this.API_ENDPOINT + `/api/contacts/${id}`)
+    return this.http.get(this.API_ENDPOINT + `api/contacts/${id}`)
       .map(res => res.json().item);
   }
 
   updateContact(contact: Contact) {
-    return this.http.put(this.API_ENDPOINT + `/api/contacts/${contact.id}`, contact)
+    return this.http.put(this.API_ENDPOINT + `api/contacts/${contact.id}`, contact)
       .map(res => res.json().item);
   }
 }
