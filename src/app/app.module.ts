@@ -11,6 +11,11 @@ import { ContactsDetailComponent } from './contacts-detail/contacts-detail.compo
 import { ContactsEditorComponent } from './contacts-editor/contacts-editor.component';
 import { apiUrlProvider, contactsServiceProvider } from './app.providers';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/distinctUntilChanged';
+//import 'rxjs/add/operator/flatMap';
+import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/operator/merge';
 
 @NgModule({
   declarations: [

@@ -4,8 +4,6 @@ import { Contact } from '../models/contact';
 import { ContactsService } from '../contacts.service';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
-import 'rxjs/add/operator/debounceTime.js';
-import 'rxjs/add/operator/distinctUntilChanged.js';
 
 @Component({
   selector: 'trm-contacts-list',
@@ -16,7 +14,7 @@ export class ContactsListComponent /*implements OnInit*/ {
 
   private terms$ = new Subject<string>();
 
-  contacts: Observable<Array<Contact>>; // = CONTACT_DATA;
+  private contacts: Observable<Array<Contact>>; // = CONTACT_DATA;
   /* contact: Contact = {
     id: 0,
     name: 'Diana Ellis',
@@ -55,14 +53,14 @@ export class ContactsListComponent /*implements OnInit*/ {
     //this.contacts = this.contactsService.getContacts();
     /*this.contactsService.getContacts()
       .subscribe(contacts => this.contacts = contacts);*/
-    this.contacts = this.contactsService.getContacts();
-
-    this.terms$.debounceTime(400)
-               .distinctUntilChanged()
-               .subscribe(term => this.search(term));
+    // this.contactsService.getContacts()
+    this.contacts = this.terms$.debounceTime(400)
+      .distinctUntilChanged() // Observable<String>
+      .switchMap(term => this.contactsService.search(term) /* Observable<Array<Contact>> */ )
+      .merge(this.contactsService.getContacts()); // merge propagates the values by input order and time
   }
 
-  search(text: string) {
-    this.contacts = this.contactsService.search(text);
+  search(text: string) : Observable<Array<Contact>> {
+    return ;
   }
 }
